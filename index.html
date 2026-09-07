@@ -5,18 +5,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="description"
-    content="Rupali Enterprises Guwahati - Authorized Distributor of Orion, Gandour, Geksons and Nippo.">
+        content="Rupali Enterprises Guwahati - Authorized Distributor of Orion, Gandour, Geksons and Nippo.">
 
   <title>Rupali Enterprises Guwahati</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* =========================
+       SALES SECTION
+    ========================= */
+
+    .sales-section {
+      background: #f7f8fb;
+    }
+
+    .sales-intro {
+      margin-bottom: 25px;
+    }
+
+    .sales-controls {
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .sales-controls label {
+      font-weight: 700;
+    }
+
+    .sales-controls select {
+      padding: 12px 15px;
+      border: 1px solid #d9deea;
+      border-radius: 9px;
+      font-size: 1rem;
+      background: white;
+      min-width: 200px;
+    }
+
+    .sales-summary {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .sales-summary-card {
+      background: white;
+      border: 1px solid #e1e5ed;
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    .sales-summary-card span {
+      display: block;
+      color: #737e90;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .sales-summary-card strong {
+      display: block;
+      font-size: 2rem;
+      color: #172033;
+    }
+
+    .sales-table-wrapper {
+      overflow-x: auto;
+      background: white;
+      border: 1px solid #e1e5ed;
+      border-radius: 16px;
+    }
+
+    .sales-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    .sales-table th,
+    .sales-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #e9edf3;
+    }
+
+    .sales-table th {
+      background: #172033;
+      color: white;
+      font-weight: 700;
+    }
+
+    .sales-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sales-table tbody tr:hover {
+      background: #f8faff;
+    }
+
+    .sales-loading,
+    .sales-error,
+    .sales-empty {
+      padding: 25px;
+      text-align: center;
+      color: #737e90;
+    }
+
+    .sales-error {
+      color: #b42318;
+    }
+
+    @media (max-width: 560px) {
+      .sales-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- =========================
        NAVIGATION
-       ========================= -->
+  ========================= -->
 
   <header class="navbar">
     <div class="container nav-inner">
@@ -29,7 +143,7 @@
         <a href="#about">About</a>
         <a href="#brands">Brands</a>
         <a href="#services">Services</a>
-        <a href="#associates">Associates</a>
+        <a href="#sales">Sales</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -41,7 +155,7 @@
 
     <!-- =========================
          HOME
-         ========================= -->
+    ========================= -->
 
     <section id="home" class="hero">
 
@@ -80,7 +194,7 @@
 
     <!-- =========================
          ABOUT
-         ========================= -->
+    ========================= -->
 
     <section id="about" class="section">
 
@@ -95,8 +209,8 @@
         </h2>
 
         <p>
-          We are an authorized distributor currently associated
-          with <strong>Orion, Gandour, Geksons and Nippo</strong>.
+          We are an authorized distributor currently associated with
+          <strong>Orion, Gandour, Geksons and Nippo</strong>.
           Our focus is on dependable distribution, genuine products
           and professional service for retailers and business customers.
         </p>
@@ -108,7 +222,7 @@
 
     <!-- =========================
          BRANDS
-         ========================= -->
+    ========================= -->
 
     <section id="brands" class="section light">
 
@@ -153,7 +267,7 @@
 
     <!-- =========================
          SERVICES
-         ========================= -->
+    ========================= -->
 
     <section id="services" class="section">
 
@@ -180,8 +294,8 @@
             </h3>
 
             <p>
-              Reliable distribution of products from our
-              authorized brand partners.
+              Reliable distribution of products from our authorized
+              brand partners.
             </p>
 
           </article>
@@ -198,8 +312,8 @@
             </h3>
 
             <p>
-              Supporting retailers with consistent supply
-              and business-focused service.
+              Supporting retailers with consistent supply and
+              business-focused service.
             </p>
 
           </article>
@@ -216,8 +330,8 @@
             </h3>
 
             <p>
-              Professional assistance for product enquiries
-              and distribution requirements.
+              Professional assistance for product enquiries and
+              distribution requirements.
             </p>
 
           </article>
@@ -230,10 +344,10 @@
 
 
     <!-- =========================
-         ASSOCIATES / DAILY SALES
-         ========================= -->
+         ASSOCIATES / SALES
+    ========================= -->
 
-    <section id="associates" class="section light">
+    <section id="sales" class="section sales-section">
 
       <div class="container">
 
@@ -246,30 +360,25 @@
         </h2>
 
         <p class="sales-intro">
-          View daily sales performance of our associates.
+          View sales data for our different sales associates.
         </p>
 
 
-        <!-- DATE FILTER -->
+        <!-- FILTER -->
 
         <div class="sales-controls">
 
-          <label for="salesDate">
-            Select Date
+          <label for="associateFilter">
+            Salesman:
           </label>
 
-          <input
-            type="date"
-            id="salesDate"
-          >
+          <select id="associateFilter">
 
-          <button
-            type="button"
-            class="button primary"
-            onclick="showAllSales()"
-          >
-            Show All
-          </button>
+            <option value="all">
+              All Salesmen
+            </option>
+
+          </select>
 
         </div>
 
@@ -306,7 +415,7 @@
         </div>
 
 
-        <!-- SALES TABLE -->
+        <!-- TABLE -->
 
         <div class="sales-table-wrapper">
 
@@ -321,7 +430,7 @@
                 </th>
 
                 <th>
-                  Associate
+                  Salesman
                 </th>
 
                 <th>
@@ -337,7 +446,7 @@
 
               <tr>
 
-                <td colspan="3">
+                <td colspan="3" class="sales-loading">
                   Loading sales data...
                 </td>
 
@@ -356,7 +465,7 @@
 
     <!-- =========================
          CONTACT
-         ========================= -->
+    ========================= -->
 
     <section id="contact" class="contact-section">
 
@@ -394,13 +503,17 @@
 
           <p>
             <strong>Phone:</strong>
+
             <a href="tel:+916000395962">
               +91 60003 95962
             </a>
+
           </p>
+
 
           <p>
             <strong>WhatsApp:</strong>
+
             <a
               href="https://wa.me/916000395962"
               target="_blank"
@@ -408,6 +521,7 @@
             >
               Chat on WhatsApp
             </a>
+
           </p>
 
         </div>
@@ -421,7 +535,7 @@
 
   <!-- =========================
        FOOTER
-       ========================= -->
+  ========================= -->
 
   <footer>
 
@@ -442,8 +556,8 @@
 
 
   <!-- =========================
-       DAILY SALES JAVASCRIPT
-       ========================= -->
+       GOOGLE SHEETS SALES SCRIPT
+  ========================= -->
 
   <script>
 
@@ -454,288 +568,426 @@
     let salesData = [];
 
 
-    // Load data from Google Sheets
+    /* =========================
+       FIND COLUMN
+    ========================= */
+
+    function findColumn(headers, possibleNames) {
+
+      for (let i = 0; i < headers.length; i++) {
+
+        const header =
+          String(headers[i])
+            .trim()
+            .toLowerCase();
+
+        for (const name of possibleNames) {
+
+          if (header === name.toLowerCase()) {
+            return i;
+          }
+
+        }
+
+      }
+
+      return -1;
+
+    }
+
+
+    /* =========================
+       LOAD SALES
+    ========================= */
 
     async function loadSales() {
 
       const tableBody =
         document.getElementById("salesTableBody");
 
-
       try {
 
         const response =
           await fetch(SALES_API);
 
-
         if (!response.ok) {
+          throw new Error("Unable to connect to Google Sheets");
+        }
 
-          throw new Error("Unable to connect to sales API");
+        const data =
+          await response.json();
+
+        console.log("Google Sheet data:", data);
+
+        if (!Array.isArray(data) || data.length === 0) {
+
+          tableBody.innerHTML =
+            '<tr><td colspan="3" class="sales-empty">No sales data found.</td></tr>';
+
+          return;
 
         }
 
 
-        salesData =
-          await response.json();
+        /*
+          Expected format:
+
+          [
+            ["Date","Associates","Sales Value"],
+            ["7/6/26","Bishal","8000"],
+            ["8/6/26","Rahul","9000"]
+          ]
+        */
+
+        if (Array.isArray(data[0])) {
+
+          const headers = data[0];
+
+          const dateColumn =
+            findColumn(headers, [
+              "date",
+              "sales date"
+            ]);
+
+          const associateColumn =
+            findColumn(headers, [
+              "associates",
+              "associate",
+              "salesman",
+              "salesman name",
+              "sales man",
+              "employee",
+              "employee name"
+            ]);
+
+          const salesColumn =
+            findColumn(headers, [
+              "sales value",
+              "sales",
+              "sale",
+              "amount",
+              "sales amount",
+              "total sales"
+            ]);
 
 
-        console.log("Sales data:", salesData);
+          if (
+            dateColumn === -1 ||
+            associateColumn === -1 ||
+            salesColumn === -1
+          ) {
 
+            tableBody.innerHTML =
+              '<tr><td colspan="3" class="sales-error">' +
+              'Could not identify Date, Salesman and Sales Value columns. ' +
+              'Please check your Google Sheet headers.' +
+              '</td></tr>';
+
+            console.log("Headers found:", headers);
+
+            return;
+
+          }
+
+
+          salesData = data
+            .slice(1)
+            .filter(row => row.length > 0)
+            .map(row => ({
+
+              date:
+                row[dateColumn] ?? "",
+
+              associate:
+                row[associateColumn] ?? "",
+
+              sales:
+                parseFloat(
+                  String(row[salesColumn] ?? "")
+                    .replace(/₹/g, "")
+                    .replace(/,/g, "")
+                    .trim()
+                ) || 0
+
+            }))
+            .filter(item => item.associate !== "");
+
+        }
+
+
+        /*
+          Also supports object-style JSON.
+        */
+
+        else if (
+          typeof data[0] === "object"
+        ) {
+
+          salesData = data.map(item => {
+
+            const keys =
+              Object.keys(item);
+
+            const findKey =
+              possibleNames => {
+
+                for (const key of keys) {
+
+                  for (const name of possibleNames) {
+
+                    if (
+                      key.trim().toLowerCase() ===
+                      name.toLowerCase()
+                    ) {
+
+                      return key;
+
+                    }
+
+                  }
+
+                }
+
+                return null;
+
+              };
+
+
+            const dateKey =
+              findKey([
+                "date",
+                "sales date"
+              ]);
+
+            const associateKey =
+              findKey([
+                "associates",
+                "associate",
+                "salesman",
+                "salesman name",
+                "employee",
+                "employee name"
+              ]);
+
+            const salesKey =
+              findKey([
+                "sales value",
+                "sales",
+                "sale",
+                "amount",
+                "sales amount",
+                "total sales"
+              ]);
+
+
+            return {
+
+              date:
+                dateKey ? item[dateKey] : "",
+
+              associate:
+                associateKey ? item[associateKey] : "",
+
+              sales:
+                salesKey
+                  ? parseFloat(
+                      String(item[salesKey])
+                        .replace(/₹/g, "")
+                        .replace(/,/g, "")
+                    ) || 0
+                  : 0
+
+            };
+
+          });
+
+        }
+
+
+        createAssociateFilter();
 
         displaySales();
 
+      }
 
-      } catch (error) {
+      catch (error) {
 
         console.error(error);
 
-
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="3">
-              Unable to load sales data.
-            </td>
-          </tr>
-        `;
+        tableBody.innerHTML =
+          '<tr><td colspan="3" class="sales-error">' +
+          'Unable to load sales data. Please check the Google Apps Script.' +
+          '</td></tr>';
 
       }
 
     }
 
 
-    // Convert spreadsheet date to YYYY-MM-DD
+    /* =========================
+       CREATE SALESMAN FILTER
+    ========================= */
 
-    function convertDate(dateValue) {
+    function createAssociateFilter() {
 
-      if (!dateValue) {
-        return "";
-      }
+      const filter =
+        document.getElementById("associateFilter");
 
+      const associates =
+        [...new Set(
+          salesData
+            .map(item => String(item.associate).trim())
+            .filter(name => name !== "")
+        )]
+        .sort();
 
-      const value =
-        String(dateValue).trim();
 
+      filter.innerHTML =
+        '<option value="all">All Salesmen</option>';
 
-      // Format: 7/6/26
 
-      if (value.includes("/")) {
+      associates.forEach(name => {
 
-        const parts =
-          value.split("/");
+        const option =
+          document.createElement("option");
 
+        option.value = name;
+        option.textContent = name;
 
-        if (parts.length === 3) {
-
-          let day =
-            parts[0].padStart(2, "0");
-
-          let month =
-            parts[1].padStart(2, "0");
-
-          let year =
-            parts[2];
-
-
-          if (year.length === 2) {
-
-            year = "20" + year;
-
-          }
-
-
-          return `${year}-${month}-${day}`;
-
-        }
-
-      }
-
-
-      return value;
-
-    }
-
-
-    // Display sales
-
-    function displaySales() {
-
-      const selectedDate =
-        document.getElementById("salesDate").value;
-
-
-      const tableBody =
-        document.getElementById("salesTableBody");
-
-
-      let total =
-        0;
-
-
-      let associates =
-        new Set();
-
-
-      tableBody.innerHTML =
-        "";
-
-
-      if (!salesData || salesData.length <= 1) {
-
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="3">
-              No sales data available.
-            </td>
-          </tr>
-        `;
-
-
-        updateSummary(0, 0);
-
-        return;
-
-      }
-
-
-      const rows =
-        salesData.slice(1).filter(row => {
-
-          if (!row[0]) {
-            return false;
-          }
-
-
-          if (!selectedDate) {
-            return true;
-          }
-
-
-          return convertDate(row[0]) === selectedDate;
-
-        });
-
-
-      if (rows.length === 0) {
-
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="3">
-              No sales data available for this date.
-            </td>
-          </tr>
-        `;
-
-
-        updateSummary(0, 0);
-
-        return;
-
-      }
-
-
-      rows.forEach(row => {
-
-        const date =
-          row[0] || "";
-
-
-        const associate =
-          row[1] || "";
-
-
-        const sales =
-          parseFloat(
-            String(row[2] || "")
-              .replace(/[₹,]/g, "")
-          ) || 0;
-
-
-        total += sales;
-
-
-        if (associate) {
-
-          associates.add(associate);
-
-        }
-
-
-        const tr =
-          document.createElement("tr");
-
-
-        tr.innerHTML = `
-
-          <td>
-            ${date}
-          </td>
-
-          <td>
-            ${associate}
-          </td>
-
-          <td>
-            ₹${sales.toLocaleString("en-IN")}
-          </td>
-
-        `;
-
-
-        tableBody.appendChild(tr);
+        filter.appendChild(option);
 
       });
 
 
-      updateSummary(
-        total,
-        associates.size
-      );
+      document.getElementById("associateCount")
+        .textContent = associates.length;
 
     }
 
 
-    // Update summary cards
+    /* =========================
+       DISPLAY SALES
+    ========================= */
 
-    function updateSummary(total, count) {
+    function displaySales() {
 
-      document.getElementById("totalSales").textContent =
+      const tableBody =
+        document.getElementById("salesTableBody");
+
+      const filter =
+        document.getElementById("associateFilter").value;
+
+
+      let filteredData =
+        salesData;
+
+
+      if (filter !== "all") {
+
+        filteredData =
+          salesData.filter(
+            item =>
+              String(item.associate).trim() === filter
+          );
+
+      }
+
+
+      if (filteredData.length === 0) {
+
+        tableBody.innerHTML =
+          '<tr><td colspan="3" class="sales-empty">' +
+          'No sales data found.' +
+          '</td></tr>';
+
+      }
+
+      else {
+
+        tableBody.innerHTML =
+          filteredData.map(item => {
+
+            const sales =
+              Number(item.sales) || 0;
+
+
+            return `
+
+              <tr>
+
+                <td>
+                  ${escapeHTML(item.date)}
+                </td>
+
+                <td>
+                  <strong>
+                    ${escapeHTML(item.associate)}
+                  </strong>
+                </td>
+
+                <td>
+                  ₹${sales.toLocaleString("en-IN")}
+                </td>
+
+              </tr>
+
+            `;
+
+          }).join("");
+
+      }
+
+
+      const total =
+        filteredData.reduce(
+          (sum, item) =>
+            sum + (Number(item.sales) || 0),
+          0
+        );
+
+
+      document.getElementById("totalSales")
+        .textContent =
         "₹" + total.toLocaleString("en-IN");
 
+    }
 
-      document.getElementById("associateCount").textContent =
-        count;
+
+    /* =========================
+       SECURITY
+    ========================= */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
     }
 
 
-    // Show all sales
-
-    function showAllSales() {
-
-      document.getElementById("salesDate").value =
-        "";
-
-
-      displaySales();
-
-    }
-
-
-    // Date filter
+    /* =========================
+       FILTER CHANGE
+    ========================= */
 
     document
-      .getElementById("salesDate")
+      .getElementById("associateFilter")
       .addEventListener(
         "change",
         displaySales
       );
 
 
-    // Start
+    /* =========================
+       START
+    ========================= */
 
     loadSales();
 
   </script>
 
 </body>
-</html>
+              </html>
