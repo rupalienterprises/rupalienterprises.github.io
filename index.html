@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Rupali Enterprises Guwahati - Authorized Distributor of Orion, Gandour, Geksons and Nippo.">
-
   <title>Rupali Enterprises | Guwahati</title>
 
   <style>
@@ -33,10 +31,10 @@
 
     .container {
       width: min(1120px, 92%);
-      margin: auto;
+      margin: 0 auto;
     }
 
-    /* NAVIGATION */
+    /* NAVBAR */
 
     .navbar {
       position: sticky;
@@ -52,7 +50,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
     }
 
     .logo {
@@ -62,8 +59,7 @@
 
     nav {
       display: flex;
-      align-items: center;
-      gap: 24px;
+      gap: 25px;
       font-size: 0.95rem;
       font-weight: 600;
     }
@@ -72,21 +68,10 @@
       opacity: 0.65;
     }
 
-    .login-link {
-      background: #4f46e5;
-      color: white;
-      padding: 9px 17px;
-      border-radius: 8px;
-    }
-
-    .login-link:hover {
-      opacity: 0.9;
-    }
-
     /* HERO */
 
     .hero {
-      min-height: 620px;
+      min-height: 650px;
       display: flex;
       align-items: center;
       background:
@@ -104,7 +89,7 @@
 
     .hero-content {
       padding: 90px 0;
-      max-width: 820px;
+      max-width: 850px;
     }
 
     .eyebrow {
@@ -116,10 +101,97 @@
     }
 
     h1 {
-      font-size: clamp(2.7rem, 7vw, 5.3rem);
+      font-size: clamp(2.8rem, 7vw, 5.3rem);
       line-height: 1.02;
       letter-spacing: -0.055em;
-      margin-bottom: 24px;
+      margin-bottom: 25px;
+    }
+
+    .hero-text {
+      max-width: 700px;
+      color: #536075;
+      font-size: 1.15rem;
+    }
+
+    /* PORTAL */
+
+    .portal {
+      padding: 90px 0;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .portal h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .portal-description {
+      color: #667085;
+      max-width: 650px;
+      margin: 0 auto 40px;
+    }
+
+    .portal-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .portal-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 210px;
+      padding: 35px;
+      border-radius: 18px;
+      color: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .portal-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(23,32,51,0.15);
+    }
+
+    .admin {
+      background: #172033;
+    }
+
+    .associate {
+      background: #4f46e5;
+    }
+
+    .portal-icon {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .portal-button h3 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .portal-button p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* ABOUT */
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .light {
+      background: #f7f8fb;
+    }
+
+    .narrow {
+      max-width: 820px;
     }
 
     h2 {
@@ -129,62 +201,9 @@
       margin-bottom: 18px;
     }
 
-    h3 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-    }
-
-    .hero-text {
-      max-width: 700px;
-      color: #536075;
-      font-size: 1.15rem;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 9px;
-      font-weight: 700;
-    }
-
-    .primary {
-      color: white;
-      background: #4f46e5;
-    }
-
-    .secondary {
-      background: white;
-      border: 1px solid #d9deea;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    /* SECTIONS */
-
-    .section {
-      padding: 100px 0;
-    }
-
     .section p:not(.eyebrow) {
       color: #596579;
       font-size: 1.05rem;
-    }
-
-    .narrow {
-      max-width: 820px;
-    }
-
-    .light {
-      background: #f7f8fb;
     }
 
     /* BRANDS */
@@ -205,12 +224,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      transition: 0.2s;
-    }
-
-    .brand-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 35px rgba(23,32,51,0.08);
     }
 
     .brand-card span {
@@ -311,16 +324,7 @@
     @media (max-width: 800px) {
 
       nav {
-        gap: 10px;
-        font-size: 0.85rem;
-      }
-
-      .hero {
-        min-height: 560px;
-      }
-
-      .section {
-        padding: 75px 0;
+        display: none;
       }
 
       .brand-grid,
@@ -335,16 +339,9 @@
 
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 600px) {
 
-      .nav-inner {
-        min-height: 65px;
-      }
-
-      nav a:not(.login-link) {
-        display: none;
-      }
-
+      .portal-buttons,
       .brand-grid,
       .service-grid,
       .contact-box {
@@ -381,19 +378,10 @@
       </a>
 
       <nav>
-
         <a href="#about">About</a>
-
         <a href="#brands">Brands</a>
-
         <a href="#services">Services</a>
-
         <a href="#contact">Contact</a>
-
-        <a href="login.html" class="login-link">
-          Login
-        </a>
-
       </nav>
 
     </div>
@@ -401,251 +389,297 @@
   </header>
 
 
-  <main>
+  <!-- HERO -->
 
-    <!-- HOME -->
+  <section id="home" class="hero">
 
-    <section id="home" class="hero">
+    <div class="container hero-content">
 
-      <div class="container hero-content">
+      <p class="eyebrow">
+        GUWAHATI • ASSAM
+      </p>
 
-        <p class="eyebrow">
-          GUWAHATI • ASSAM
-        </p>
+      <h1>
+        Your Trusted Distribution Partner
+      </h1>
 
-        <h1>
-          Your Trusted Distribution Partner
-        </h1>
+      <p class="hero-text">
+        Rupali Enterprises is an authorized distributor of
+        Orion, Gandour, Geksons and Nippo, serving retailers
+        and businesses with reliable supply.
+      </p>
 
-        <p class="hero-text">
-          Rupali Enterprises is an authorized distributor of
-          Orion, Gandour, Geksons and Nippo, serving retailers
-          and businesses with reliable supply.
-        </p>
+    </div>
 
-        <div class="buttons">
+  </section>
 
-          <a class="button primary" href="#brands">
-            Our Brands
-          </a>
 
-          <a class="button secondary" href="#contact">
-            Contact Us
-          </a>
+  <!-- PORTAL -->
 
+  <section class="portal">
+
+    <div class="container">
+
+      <p class="eyebrow">
+        BUSINESS PORTAL
+      </p>
+
+      <h2>
+        Choose Your Portal
+      </h2>
+
+      <p class="portal-description">
+        Access the appropriate portal to manage or view
+        daily sales information.
+      </p>
+
+
+      <div class="portal-buttons">
+
+        <a href="admin.html" class="portal-button admin">
+
+          <div class="portal-icon">
+            👨‍💼
+          </div>
+
+          <h3>
+            Admin
+          </h3>
+
+          <p>
+            Manage sales and business data
+          </p>
+
+        </a>
+
+
+        <a href="associates.html" class="portal-button associate">
+
+          <div class="portal-icon">
+            👥
+          </div>
+
+          <h3>
+            Associate
+          </h3>
+
+          <p>
+            View daily sales information
+          </p>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about" class="section">
+
+    <div class="container narrow">
+
+      <p class="eyebrow">
+        ABOUT US
+      </p>
+
+      <h2>
+        Rupali Enterprises Guwahati
+      </h2>
+
+      <p>
+        We are an authorized distributor currently associated
+        with <strong>Orion, Gandour, Geksons and Nippo</strong>.
+        Our focus is on dependable distribution, genuine products
+        and professional service for retailers and business
+        customers.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- BRANDS -->
+
+  <section id="brands" class="section light">
+
+    <div class="container">
+
+      <p class="eyebrow">
+        OUR BRANDS
+      </p>
+
+      <h2>
+        Brands We Distribute
+      </h2>
+
+      <div class="brand-grid">
+
+        <div class="brand-card">
+          <span>ORION</span>
+          <small>Authorized Distribution</small>
+        </div>
+
+        <div class="brand-card">
+          <span>GANDOUR</span>
+          <small>Authorized Distribution</small>
+        </div>
+
+        <div class="brand-card">
+          <span>GEKSONS</span>
+          <small>Authorized Distribution</small>
+        </div>
+
+        <div class="brand-card">
+          <span>NIPPO</span>
+          <small>Authorized Distribution</small>
         </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <!-- ABOUT -->
+  <!-- SERVICES -->
 
-    <section id="about" class="section">
+  <section id="services" class="section">
 
-      <div class="container narrow">
+    <div class="container">
+
+      <p class="eyebrow">
+        WHAT WE DO
+      </p>
+
+      <h2>
+        Our Services
+      </h2>
+
+      <div class="service-grid">
+
+        <article>
+
+          <div class="icon">
+            01
+          </div>
+
+          <h3>
+            Product Distribution
+          </h3>
+
+          <p>
+            Reliable distribution of products from our
+            authorized brand partners.
+          </p>
+
+        </article>
+
+
+        <article>
+
+          <div class="icon">
+            02
+          </div>
+
+          <h3>
+            Retailer Supply
+          </h3>
+
+          <p>
+            Supporting retailers with consistent supply
+            and business-focused service.
+          </p>
+
+        </article>
+
+
+        <article>
+
+          <div class="icon">
+            03
+          </div>
+
+          <h3>
+            Business Support
+          </h3>
+
+          <p>
+            Professional assistance for product enquiries
+            and distribution requirements.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="contact-section">
+
+    <div class="container contact-box">
+
+      <div>
 
         <p class="eyebrow">
-          ABOUT US
+          GET IN TOUCH
         </p>
 
         <h2>
-          Rupali Enterprises Guwahati
+          Let's do business.
         </h2>
 
         <p>
-          We are an authorized distributor currently associated
-          with <strong>Orion, Gandour, Geksons and Nippo</strong>.
-          Our focus is on dependable distribution, genuine products
-          and professional service for retailers and business
-          customers.
+          Contact Rupali Enterprises for product enquiries,
+          retailer supply and distribution requirements.
         </p>
 
       </div>
 
-    </section>
 
+      <div class="contact-details">
 
-    <!-- BRANDS -->
-
-    <section id="brands" class="section light">
-
-      <div class="container">
-
-        <p class="eyebrow">
-          OUR BRANDS
+        <p>
+          <strong>Business:</strong>
+          Rupali Enterprises Guwahati
         </p>
 
-        <h2>
-          Brands We Distribute
-        </h2>
-
-        <div class="brand-grid">
-
-          <div class="brand-card">
-            <span>ORION</span>
-            <small>Authorized Distribution</small>
-          </div>
-
-          <div class="brand-card">
-            <span>GANDOUR</span>
-            <small>Authorized Distribution</small>
-          </div>
-
-          <div class="brand-card">
-            <span>GEKSONS</span>
-            <small>Authorized Distribution</small>
-          </div>
-
-          <div class="brand-card">
-            <span>NIPPO</span>
-            <small>Authorized Distribution</small>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SERVICES -->
-
-    <section id="services" class="section">
-
-      <div class="container">
-
-        <p class="eyebrow">
-          WHAT WE DO
+        <p>
+          <strong>Location:</strong>
+          Guwahati, Assam
         </p>
 
-        <h2>
-          Our Services
-        </h2>
+        <p>
+          <strong>Phone:</strong>
+          <a href="tel:+916000395962">
+            +91 60003 95962
+          </a>
+        </p>
 
-        <div class="service-grid">
-
-          <article>
-
-            <div class="icon">
-              01
-            </div>
-
-            <h3>
-              Product Distribution
-            </h3>
-
-            <p>
-              Reliable distribution of products from our
-              authorized brand partners.
-            </p>
-
-          </article>
-
-
-          <article>
-
-            <div class="icon">
-              02
-            </div>
-
-            <h3>
-              Retailer Supply
-            </h3>
-
-            <p>
-              Supporting retailers with consistent supply
-              and business-focused service.
-            </p>
-
-          </article>
-
-
-          <article>
-
-            <div class="icon">
-              03
-            </div>
-
-            <h3>
-              Business Support
-            </h3>
-
-            <p>
-              Professional assistance for product enquiries
-              and distribution requirements.
-            </p>
-
-          </article>
-
-        </div>
+        <p>
+          <strong>WhatsApp:</strong>
+          <a
+            href="https://wa.me/916000395962"
+            target="_blank"
+          >
+            Chat on WhatsApp
+          </a>
+        </p>
 
       </div>
 
-    </section>
+    </div>
 
-
-    <!-- CONTACT -->
-
-    <section id="contact" class="contact-section">
-
-      <div class="container contact-box">
-
-        <div>
-
-          <p class="eyebrow">
-            GET IN TOUCH
-          </p>
-
-          <h2>
-            Let's do business.
-          </h2>
-
-          <p>
-            Contact Rupali Enterprises for product enquiries,
-            retailer supply and distribution requirements.
-          </p>
-
-        </div>
-
-
-        <div class="contact-details">
-
-          <p>
-            <strong>Business:</strong>
-            Rupali Enterprises Guwahati
-          </p>
-
-          <p>
-            <strong>Location:</strong>
-            Guwahati, Assam
-          </p>
-
-          <p>
-            <strong>Phone:</strong>
-            <a href="tel:+916000395962">
-              +91 60003 95962
-            </a>
-          </p>
-
-          <p>
-            <strong>WhatsApp:</strong>
-            <a
-              href="https://wa.me/916000395962"
-              target="_blank"
-            >
-              Chat on WhatsApp
-            </a>
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
+  </section>
 
 
   <!-- FOOTER -->
