@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Associates | Rupali Enterprises</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f8fb;
+      color: #172033;
+    }
+
+    .header {
+      background: #172033;
+      color: white;
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logout {
+      color: white;
+      text-decoration: none;
+      padding: 9px 15px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 7px;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 40px auto;
+    }
+
+    .eyebrow {
+      color: #4f46e5;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 8px 0;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+      margin-top: 25px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .summary-box {
+      padding: 22px;
+      background: #eef2ff;
+      border-radius: 12px;
+    }
+
+    .summary-box small {
+      display: block;
+      color: #667085;
+      margin-bottom: 5px;
+    }
+
+    .summary-box strong {
+      font-size: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 13px;
+      border-bottom: 1px solid #eaecf0;
+    }
+
+    th {
+      background: #f7f8fb;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 30px;
+      color: #667085;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+      color: #667085;
+    }
+
+    @media (max-width: 600px) {
+
+      .filters,
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        padding: 18px 4%;
+      }
+
+      .container {
+        width: 92%;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+
+    <div class="logo">
+      Rupali Enterprises
+    </div>
+
+    <a href="login.html" class="logout" onclick="logout()">
+      Logout
+    </a>
+
+  </header>
+
+
+  <main class="container">
+
+    <p class="eyebrow">
+      ASSOCIATES PORTAL
+    </p>
+
+    <h1>
+      Sales Dashboard
+    </h1>
+
+    <p>
+      View daily sales performance.
+    </p>
+
+
+    <div class="card">
+
+      <div class="filters">
+
+        <div>
+
+          <label for="date">
+            Select Date
+          </label>
+
+          <input
+            type="date"
+            id="date"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label for="associate">
+            Select Associate
+          </label>
+
+          <select id="associate">
+
+            <option value="all">
+              All Associates
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="summary">
+
+        <div class="summary-box">
+
+          <small>
+            Total Sales
+          </small>
+
+          <strong id="totalSales">
+            ₹0
+          </strong>
+
+        </div>
+
+
+        <div class="summary-box">
+
+          <small>
+            Sales Entries
+          </small>
+
+          <strong id="entryCount">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div id="tableContainer">
+
+        <div class="loading">
+          Loading sales data...
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    const SALES_API =
+      "https://script.google.com/macros/s/AKfycbwlmZPK8S0FfRv-J4bIfB7Pi38jePBNO4gexPI7_8P_jCtvC45lUWoTSkjcUw5GdSlj/exec";
+
+
+    let salesData = [];
+
+
+    async function loadSales() {
+
+      const container =
+        document.getElementById("tableContainer");
+
+      try {
+
+        const response =
+          await fetch(SALES_API);
+
+        const result =
+          await response.json();
+
+
+        if (!result.success) {
+
+          container.innerHTML =
+            '<div class="no-data">Unable to load sales data.</div>';
+
+          return;
+
+        }
+
+
+        salesData = result.data || [];
+
+        createAssociateList();
+
+        displaySales();
+
+      } catch (error) {
+
+        container.innerHTML =
+          '<div class="no-data">Unable to connect to the sales server.</div>';
+
+      }
+
+    }
+
+
+    function createAssociateList() {
+
+      const select =
+        document.getElementById("associate");
+
+      const associates =
+        [...new Set(
+          salesData.map(item => item.associate)
+        )].sort();
+
+
+      associates.forEach(function(name) {
+
+        const option =
+          document.createElement("option");
+
+        option.value = name;
+        option.textContent = name;
+
+        select.appendChild(option);
+
+      });
+
+    }
+
+
+    function displaySales() {
+
+      const selectedDate =
+        document.getElementById("date").value;
+
+      const selectedAssociate =
+        document.getElementById("associate").value;
+
+
+      let filtered =
+        salesData.filter(function(item) {
+
+          const dateMatch =
+            !selectedDate ||
+            item.date === selectedDate;
+
+          const associateMatch =
+            selectedAssociate === "all" ||
+            item.associate === selectedAssociate;
+
+          return dateMatch && associateMatch;
+
+        });
+
+
+      let total = 0;
+
+      filtered.forEach(function(item) {
+
+        total += Number(item.sales) || 0;
+
+      });
+
+
+      document.getElementById("totalSales")
+        .textContent =
+        "₹" + total.toLocaleString("en-IN");
+
+
+      document.getElementById("entryCount")
+        .textContent =
+        filtered.length;
+
+
+      const container =
+        document.getElementById("tableContainer");
+
+
+      if (filtered.length === 0) {
+
+        container.innerHTML =
+          '<div class="no-data">No sales data found for the selected filters.</div>';
+
+        return;
+
+      }
+
+
+      let html = `
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Date</th>
+              <th>Associate</th>
+              <th>Sales</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+      `;
+
+
+      filtered.forEach(function(item) {
+
+        html += `
+
+          <tr>
+
+            <td>${formatDate(item.date)}</td>
+
+            <td>${escapeHtml(item.associate)}</td>
+
+            <td>
+              ₹${Number(item.sales).toLocaleString("en-IN")}
+            </td>
+
+          </tr>
+
+        `;
+
+      });
+
+
+      html += `
+
+          </tbody>
+
+        </table>
+
+      `;
+
+
+      container.innerHTML = html;
+
+    }
+
+
+    function formatDate(date) {
+
+      if (!date) return "";
+
+      const parts =
+        date.split("-");
+
+      if (parts.length !== 3) {
+        return date;
+      }
+
+      return parts[2] + "/" +
+             parts[1] + "/" +
+             parts[0];
+
+    }
+
+
+    function escapeHtml(text) {
+
+      const div =
+        document.createElement("div");
+
+      div.textContent = text;
+
+      return div.innerHTML;
+
+    }
+
+
+    function logout() {
+
+      sessionStorage.removeItem("rupaliLogin");
+
+    }
+
+
+    document
+      .getElementById("date")
+      .addEventListener("change", displaySales);
+
+
+    document
+      .getElementById("associate")
+      .addEventListener("change", displaySales);
+
+
+    loadSales();
+
+  </script>
+
+</body>
+</html>
