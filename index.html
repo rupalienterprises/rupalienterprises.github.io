@@ -85,6 +85,61 @@
         </div>
       </div>
     </section>
+    <section id="associates" class="section light">
+
+  <div class="container">
+
+    <p class="eyebrow">ASSOCIATES</p>
+
+    <h2>Daily Sales</h2>
+
+    <p class="sales-intro">
+      View daily sales performance of our associates.
+    </p>
+
+    <div class="sales-controls">
+      <label for="salesDate">Select Date</label>
+      <input type="date" id="salesDate">
+    </div>
+
+    <div class="sales-summary">
+
+      <div class="sales-summary-card">
+        <span>Total Sales</span>
+        <strong id="totalSales">₹0</strong>
+      </div>
+
+      <div class="sales-summary-card">
+        <span>Associates</span>
+        <strong id="associateCount">0</strong>
+      </div>
+
+    </div>
+
+    <div class="sales-table-wrapper">
+
+      <table class="sales-table">
+
+        <thead>
+          <tr>
+            <th>Associate</th>
+            <th>Sales Value</th>
+          </tr>
+        </thead>
+
+        <tbody id="salesTableBody">
+          <tr>
+            <td colspan="2">Loading sales data...</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+    </section>
 
     <section id="contact" class="contact-section">
       <div class="container contact-box">
@@ -117,5 +172,110 @@
       <p>Authorized Distributor • Orion • Gandour • Geksons • Nippo</p>
     </div>
   </footer>
+
+  <script>
+
+const SALES_API =
+"https://script.google.com/macros/s/AKfycbyV8QvurCnDcJgG1-E8Za_y272UKe4gQhfJ1PP5weGLFd2jVjZ42rhpL0mv_HYglmNxrQ/exec";
+
+let salesData = [];
+
+async function loadSales() {
+
+  const tableBody =
+    document.getElementById("salesTableBody");
+
+  try {
+
+    const response = await fetch(SALES_API);
+
+    salesData = await response.json();
+
+    displaySales();
+
+  } catch (error) {
+
+    tableBody.innerHTML =
+      '<tr><td colspan="2">Unable to load sales data.</td></tr>';
+
+  }
+}
+
+function displaySales() {
+
+  const selectedDate =
+    document.getElementById("salesDate").value;
+
+  const tableBody =
+    document.getElementById("salesTableBody");
+
+  let total = 0;
+  let associates = 0;
+
+  tableBody.innerHTML = "";
+
+  const rows = salesData.slice(1).filter(row => {
+
+    if (!row[0]) return false;
+
+    if (!selectedDate) return true;
+
+    const parts = row[0].split("/");
+
+    if (parts.length !== 3) return false;
+
+    const day = parts[0].padStart(2, "0");
+    const month = parts[1].padStart(2, "0");
+    const year = "20" + parts[2];
+
+    return `${year}-${month}-${day}` === selectedDate;
+
+  });
+
+  if (rows.length === 0) {
+
+    tableBody.innerHTML =
+      '<tr><td colspan="2">No sales data available.</td></tr>';
+
+  }
+
+  rows.forEach(row => {
+
+    const associate = row[1];
+
+    const sales =
+      parseFloat(String(row[2]).replace(/[₹,]/g, "")) || 0;
+
+    total += sales;
+    associates++;
+
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${associate}</td>
+      <td>₹${sales.toLocaleString("en-IN")}</td>
+    `;
+
+    tableBody.appendChild(tr);
+
+  });
+
+  document.getElementById("totalSales").textContent =
+    "₹" + total.toLocaleString("en-IN");
+
+  document.getElementById("associateCount").textContent =
+    associates;
+}
+
+document
+  .getElementById("salesDate")
+  .addEventListener("change", displaySales);
+
+loadSales();
+
+</script>
+
+</body>
+</html>
 </body>
 </html>
